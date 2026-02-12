@@ -120,3 +120,13 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "bootstrap/scss/placeholders";
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
+
+// Botões sólidos com fonte branca (primário, secundário, terciário)
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  --#{$prefix}btn-color: #fff;
+  --#{$prefix}btn-hover-color: #fff;
+  --#{$prefix}btn-active-color: #fff;
+  --#{$prefix}btn-disabled-color: #fff;
+}
