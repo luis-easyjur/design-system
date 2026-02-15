@@ -1,4 +1,7 @@
 const paginas = {
+  introducao: paginaIntroducao,
+  rebranding: paginaRebranding,
+  legalops: paginaLegalOps,
   cores: paginaCores,
   tipografia: paginaTipografia,
   espacamento: paginaEspacamento,
@@ -34,7 +37,7 @@ const paginas = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-  carregarPagina('cores');
+  carregarPagina('introducao');
 
   const botoesNav = document.querySelectorAll('.nav-link[data-pagina]');
   botoesNav.forEach(botao => {
@@ -146,6 +149,202 @@ function escapeHtml(text) {
 }
 
 // ===================== PÁGINAS =====================
+
+function paginaIntroducao() {
+  return `
+    <section class="mb-5">
+      <div class="p-5 mb-4 bg-light rounded-3 border">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold text-primary">EasyJur Design System</h1>
+          <p class="col-md-8 fs-4">Documentação oficial dos padrões de interface, componentes e diretrizes visuais para os produtos EasyJur.</p>
+          <hr class="my-4">
+          <p>Este sistema é a fonte única da verdade para o desenvolvimento frontend na EasyJur, garantindo consistência, acessibilidade e eficiência entre as equipes de SaaS e Legal Ops.</p>
+          <button class="btn btn-primary btn-lg" onclick="document.querySelector('[data-pagina=\\'rebranding\\']').click()">Começar pelo Rebranding</button>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 bg-primary text-white">
+            <div class="card-body">
+              <h3 class="h5 fw-bold mb-3"><i class="bi bi-bootstrap me-2"></i> Baseado em Bootstrap 5</h3>
+              <p class="mb-0">Aproveitamos a robustez e a documentação do framework mais popular do mundo, estendendo-o com a identidade visual da EasyJur.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 bg-secondary text-white">
+            <div class="card-body">
+              <h3 class="h5 fw-bold mb-3"><i class="bi bi-arrow-repeat me-2"></i> Estratégia de Rebranding</h3>
+              <p class="mb-0">Ferramentas exclusivas para permitir a convivência harmoniosa entre o novo design e as interfaces legadas do sistema.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 bg-dark text-white">
+            <div class="card-body">
+              <h3 class="h5 fw-bold mb-3"><i class="bi bi-code-square me-2"></i> Flexibilidade Técnica</h3>
+              <p class="mb-0">Suporte nativo para HTML/Sass no produto SaaS e integração com Styled Components para o ecossistema React do Legal Ops.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="display-6 fw-bold text-primary mb-3">Visão Geral</h2>
+      <p class="lead text-muted mb-4">O Design System EasyJur não é apenas uma biblioteca de componentes; é um conjunto de regras e ferramentas para escalar o desenvolvimento.</p>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-primary shadow-sm">
+            <div class="card-body">
+              <h4 class="h5 fw-bold text-primary">Identidade Visual</h4>
+              <p class="text-muted">Tipografia <strong>Borna</strong>, paleta de cores institucional e espaçamentos refinados para transmitir a seriedade e modernidade da marca EasyJur.</p>
+              <a href="#" onclick="document.querySelector('[data-pagina=\\'cores\\']').click()" class="icon-link">Ver cores <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-secondary shadow-sm">
+            <div class="card-body">
+              <h4 class="h5 fw-bold text-secondary">Componentes Ricos</h4>
+              <p class="text-muted">De botões simples a modais complexos e data-tables. Todos os componentes foram auditados e estilizados para cobrir os casos de uso dos produtos.</p>
+              <a href="#" onclick="document.querySelector('[data-pagina=\\'botoes\\']').click()" class="icon-link">Explorar componentes <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function paginaRebranding() {
+  return `
+    <section class="mb-5">
+      <h2 class="display-6 fw-bold text-primary mb-3">Estratégia de Rebranding</h2>
+      <p class="lead text-muted mb-4">Como o novo Design System convive com o legado sem quebrar a interface.</p>
+      
+      <div class="alert alert-info border-0 shadow-sm d-flex align-items-center" role="alert">
+        <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+        <div>
+          <strong>Contexto Importante:</strong> O EasyJur possui interfaces legadas (Bootstrap 3, jQuery, CSS global). O Design System usa uma estratégia de isolamento CSS para garantir que o novo visual só se aplique onde desejado.
+        </div>
+      </div>
+
+      <h3 class="h4 fw-bold mt-5 mb-3">1. O Escopo <code>.rebranding</code></h3>
+      <p>Todas as regras de estilo do Design System (Bootstrap 5 + Customizações) estão encapsuladas dentro da classe CSS <code>.rebranding</code> (ou <code>.rebrand</code>). Isso impede que o CSS do Bootstrap 5 afete o layout global da aplicação antiga.</p>
+
+      <div class="card mb-4 shadow-sm border-start border-4 border-warning">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Como utilizar</h5>
+          <p class="card-text">Envolva qualquer nova interface ou componente migrado dentro de um container com esta classe.</p>
+          <pre class="bg-dark text-light p-3 rounded mb-0"><code>&lt;!-- Área Legada (estilos antigos) --&gt;
+&lt;div class="content-old"&gt;...&lt;/div&gt;
+
+&lt;!-- Nova Interface (Design System) --&gt;
+&lt;div class="rebranding"&gt;
+  &lt;button class="btn btn-primary"&gt;Novo Botão&lt;/button&gt;
+  &lt;div class="card"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="h4 fw-bold mt-5 mb-3">2. O Patch de Compatibilidade (JS)</h3>
+      <p>Componentes "flutuantes" do Bootstrap 5 (Modais, Tooltips, Popovers, Offcanvas) são, por padrão, anexados ao final do <code>&lt;body&gt;</code>. Isso os tiraria de dentro do container <code>.rebranding</code>, fazendo com que perdessem a estilização.</p>
+      <p>Desenvolvemos um <strong>Bootstrap Patch</strong> (<code>src/js/utils/bootstrap-patch.js</code>) que intercepta a criação desses componentes e garante que eles permaneçam estilizados e funcionais.</p>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header bg-success text-white fw-bold">O que o Patch resolve</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Mantém Tooltips/Popovers dentro do escopo <code>.rebranding</code>.</li>
+              <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Gerencia conflito de Z-Index entre modais novos e antigos (jQuery).</li>
+              <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Garante que o backdrop do modal não cubra o modal em si.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header bg-dark text-white fw-bold">Como inicializar</div>
+            <div class="card-body bg-light">
+              <pre class="mb-0 small"><code>import { initRebrandPatch, initLegacyModalConflict } from './utils/bootstrap-patch.js';
+
+// Executar no boot da aplicação
+initRebrandPatch();
+initLegacyModalConflict();</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="h4 fw-bold mt-5 mb-3">3. Coexistência de Modais</h3>
+      <p>Um cenário comum é abrir um modal novo (BS5) e, de dentro dele, precisar abrir um modal legado (ou vice-versa). O sistema trata isso automaticamente:</p>
+      <ul>
+        <li>Se um modal legado abre sobre um novo, o novo fica <code>inert</code> (inativo) e vai para o fundo.</li>
+        <li>Quando o legado fecha, o novo é restaurado automaticamente.</li>
+      </ul>
+    </section>
+  `;
+}
+
+function paginaLegalOps() {
+  return `
+    <section class="mb-5">
+      <h2 class="display-6 fw-bold text-primary mb-3">Legal Ops & Styled Components</h2>
+      <p class="lead text-muted mb-4">Guia de integração do Design System em ambientes React com CSS-in-JS.</p>
+
+      <p>O produto Legal Ops utiliza uma arquitetura baseada em React e Styled Components. Embora o core do Design System seja Sass, fornecemos os tokens e a estrutura necessária para consumo nesse ambiente.</p>
+
+      <h3 class="h4 fw-bold mt-5 mb-3">Consumindo Tokens (CSS Variables)</h3>
+      <p>O Design System exporta todas as variáveis do Bootstrap e customizações EasyJur (cores, espaçamentos, fontes) como Variáveis CSS (Custom Properties) no <code>:root</code>.</p>
+      <p>Isso permite que você utilize os valores oficiais diretamente dentro dos seus Styled Components, sem hardcode.</p>
+
+      ${componenteComCodigo('Exemplo de Componente React',
+        `<div class="p-4 border rounded bg-light">
+          <div style="font-family: monospace;">
+            <span style="color: #d63384;">const</span> <span style="color: #0d6efd;">CardProcesso</span> = <span style="color: #0d6efd;">styled</span>.div\`<br>
+            &nbsp;&nbsp;background-color: <span style="color: #198754;">var(--bs-body-bg)</span>;<br>
+            &nbsp;&nbsp;border: <span style="color: #198754;">1px solid var(--bs-border-color)</span>;<br>
+            &nbsp;&nbsp;padding: <span style="color: #198754;">var(--bs-spacer-3)</span>;<br>
+            &nbsp;&nbsp;border-radius: <span style="color: #198754;">var(--bs-border-radius)</span>;<br>
+            &nbsp;&nbsp;box-shadow: <span style="color: #198754;">var(--bs-box-shadow-sm)</span>;<br>
+            \`;
+          </div>
+        </div>`,
+        `<div class="card p-3 shadow-sm">
+  Componente estilizado com tokens
+</div>`,
+        `import styled from 'styled-components';
+
+const CardProcesso = styled.div\`
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  padding: var(--bs-spacer-3);
+  border-radius: var(--bs-border-radius);
+  
+  &:hover {
+    border-color: var(--bs-primary);
+  }
+\`;`,
+        'Sempre prefira usar var(--bs-...) ao invés de valores hexadecimais fixos.'
+      )}
+
+      <h3 class="h4 fw-bold mt-5 mb-3">Composição com Classes</h3>
+      <p>Você pode (e deve) combinar o poder do Styled Components com as classes utilitárias do Bootstrap para evitar escrever CSS repetitivo.</p>
+      
+      <pre class="bg-dark text-light p-3 rounded"><code>const BotaoAcao = styled.button.attrs({
+  className: 'btn btn-primary btn-sm'
+})\`
+  /* Apenas estilos específicos do negócio que não existem no DS */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+\`;</code></pre>
+
+      <h3 class="h4 fw-bold mt-5 mb-3">Biblioteca de Componentes (@legalops/ui)</h3>
+      <p>Para o Legal Ops, o objetivo é encapsular o HTML do Bootstrap em componentes React reutilizáveis na biblioteca interna <code>@legalops/ui</code>. Consulte a aba "LegalOps (React)" nos exemplos desta documentação para ver como implementar.</p>
+    </section>
+  `;
+}
 
 function paginaCores() {
   return `

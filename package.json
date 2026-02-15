@@ -7,9 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "compile": "sass --load-path=node_modules --style compressed --source-map src/scss/rebranding.scss dist/css/bootstrap.min.css && mkdir -p dist/js dist/fonts && cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js dist/js/ && cp src/fonts/* dist/fonts/",
-    "compile:dev": "sass --load-path=node_modules src/scss/rebranding.scss dist/css/bootstrap.css && mkdir -p dist/js dist/fonts && cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js dist/js/ && cp src/fonts/* dist/fonts/",
-    "watch": "sass --load-path=node_modules --watch src/scss/rebranding.scss dist/css/bootstrap.css"
+    "compile": "sass --load-path=node_modules --style compressed --source-map src/scss/design-system.scss:dist/css/design-system.min.css src/scss/saas.scss:dist/css/saas.min.css src/scss/legal-ops.scss:dist/css/legal-ops.min.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "compile:dev": "sass --load-path=node_modules src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "watch": "sass --load-path=node_modules --watch src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css"
   },
   "devDependencies": {
     "sass": "^1.97.1",

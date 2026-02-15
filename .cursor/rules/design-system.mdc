@@ -13,8 +13,8 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 - **Permissões**:
   - Está **liberado** criar novas classes (utilitárias ou componentes) quando necessário.
   - Está **liberado** atualizar/estender variáveis do Bootstrap quando a mudança for reaproveitável globalmente.
-- **Localização**: Toda customização **deve** ser feita em **Sass** dentro do arquivo `@src/scss/rebranding.scss`.
-- **Compilação**: O `rebranding.scss` é compilado junto com o Bootstrap. Mudanças ali refletem globalmente e novas classes ficam disponíveis para todo o projeto.
+- **Localização**: Toda customização **deve** ser feita em **Sass** dentro do arquivo `@src/scss/_base.scss`.
+- **Compilação**: O `_base.scss` é compilado junto com o Bootstrap. A compilação gera 3 arquivos: `design-system.css`, `saas.css`, `legal-ops.css`. Mudanças no `_base.scss` refletem globalmente em todos os bundles.
 - **Documentação**: Após implementar, você deve atualizar a documentação para deixar o resultado visível e utilizável.
 
 ## Regras de Implementação
@@ -22,8 +22,8 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 1.  **Bootstrap-first**: Tente resolver via variáveis, tokens ou utilitários do Bootstrap antes de criar CSS "solto".
 2.  **Global vs Específico**:
     - Se for regra global/reutilizável: prefira **variáveis** e padrões do Bootstrap (ex: `$primary`, `$font-family-sans-serif`).
-    - Se for algo específico: crie **classes novas** utilizando a metodologia de nomenclatura bem no final do `rebranding.scss` .
-3.  **Fonte da Verdade**: Não espalhe CSS. A fonte da verdade é o `@src/scss/rebranding.scss`.
+    - Se for algo específico: crie **classes novas** utilizando a metodologia de nomenclatura bem no final do `_base.scss`.
+3.  **Fonte da Verdade**: Não espalhe CSS. A fonte da verdade é o `@src/scss/_base.scss`.
 4.  **Consistência**:
     - Use `rem` para tipografia e espaçamento.
     - Mantenha nomes previsíveis.
@@ -40,7 +40,7 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 - Padrão global (variável) ou exceção (classe nova)?
 
 ### 3. Implemente no Lugar Certo
-- Edite `@src/scss/rebranding.scss`.
+- Edite `@src/scss/_base.scss`.
 - Insira variáveis antes dos imports do Bootstrap (se for override de config).
 - Insira novas classes após os imports do Bootstrap.
 
@@ -53,7 +53,7 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 
 ## Definição de Pronto (DoD)
 
-- [ ] Mudança implementada no `@src/scss/rebranding.scss`.
+- [ ] Mudança implementada no `@src/scss/_base.scss`.
 - [ ] Novas classes/variáveis disponíveis após compilação.
 - [ ] Sem regressões visuais.
 - [ ] Documentação atualizada com exemplos.
@@ -63,5 +63,5 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 Ao finalizar uma tarefa de evolução do DS, forneça:
 - **Resumo**: O que mudou e por quê.
 - **Estratégia**: Variáveis ajustadas vs Classes criadas.
-- **Arquivos**: `@src/scss/rebranding.scss`.
+- **Arquivos**: `@src/scss/_base.scss`.
 - **Exemplo de Uso**: Snippet HTML demonstrando a nova feature.

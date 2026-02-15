@@ -1,0 +1,10 @@
+// =============================================================================
+// SaaS - Bundle para o produto SaaS
+// Base compilada já dentro do contexto rebranding
+// =============================================================================
+
+@use "sass:meta";
+
+#app .rebranding { 
+  @include meta.load-css("base");
+}

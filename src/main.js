@@ -1,6 +1,6 @@
 // Importar estilos (o Vite processará o SCSS)
-import './scss/rebranding.scss';
+import './scss/design-system.scss';
 import './css/documentacao-layout.css';
 
-// Importar JS do Bootstrap (todas as funcionalidades)
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// Importar JS do Design System (inclui Bootstrap e Patches)
+import './js/design-system.js';
