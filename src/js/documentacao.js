@@ -2,6 +2,7 @@ const paginas = {
   introducao: paginaIntroducao,
   rebranding: paginaRebranding,
   legalops: paginaLegalOps,
+  icones: paginaIcones,
   cores: paginaCores,
   tipografia: paginaTipografia,
   espacamento: paginaEspacamento,
@@ -64,6 +65,16 @@ function carregarPagina(pagina) {
   if (paginas[pagina]) {
     conteudo.innerHTML = paginas[pagina]();
     inicializarComponentesBootstrap();
+    
+    // Inicializa ícones Lucide recém renderizados
+    if (window.lucide && window.lucide.createIcons) {
+      window.lucide.createIcons();
+    }
+
+    // Inicializa funcionalidade de busca se for a página de ícones
+    if (pagina === 'icones') {
+      inicializarBuscaIcones();
+    }
   }
 }
 
@@ -285,6 +296,111 @@ initLegacyModalConflict();</code></pre>
       </ul>
     </section>
   `;
+}
+
+
+function paginaIcones() {
+  // Verifica se Lucide está carregado
+  if (!window.lucide) {
+    setTimeout(() => {
+      // Tenta recarregar a página de ícones se o usuário ainda estiver nela
+      if (document.querySelector('[data-pagina="icones"]').classList.contains('active')) {
+        carregarPagina('icones');
+      }
+    }, 500);
+    return `
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Carregando biblioteca de ícones...</span>
+        </div>
+        <p class="mt-2 text-muted">Carregando biblioteca Lucide...</p>
+      </div>
+    `;
+  }
+
+  const icons = window.lucide.icons;
+  const iconNames = Object.keys(icons).sort();
+  // Resto da função...
+  const iconCards = iconNames.map(name => {
+    // Convert CamelCase to kebab-case for data-lucide
+    const kebabName = name.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+    
+    return `
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 icon-item" data-name="${name.toLowerCase()}">
+        <div class="card h-100 text-center p-3 icon-card border-0 shadow-sm bg-light-subtle">
+          <div class="mb-3 text-primary d-flex justify-content-center align-items-center" style="height: 48px;">
+            <i data-lucide="${kebabName}" width="32" height="32"></i>
+          </div>
+          <div class="small text-truncate font-monospace text-muted" title="${kebabName}">${kebabName}</div>
+          <button class="btn btn-sm btn-link text-decoration-none p-0 mt-2 small copy-btn" onclick="copiarNomeIcone('${kebabName}')">Copiar</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <section class="mb-5">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h2 class="display-6 fw-bold text-primary mb-1">Ícones (Lucide)</h2>
+          <p class="lead text-muted mb-0">Biblioteca oficial de ícones SVG. Leve, consistente e customizável.</p>
+        </div>
+        <div>
+          <span class="badge bg-primary rounded-pill fs-6">${iconNames.length} ícones</span>
+        </div>
+      </div>
+
+      <div class="alert alert-info border-0 shadow-sm d-flex align-items-center mb-4" role="alert">
+        <i data-lucide="info" class="me-3"></i>
+        <div>
+          <strong>Como usar:</strong> Adicione o atributo <code>data-lucide="nome-do-icone"</code> em uma tag <code>&lt;i&gt;</code> ou <code>&lt;span&gt;</code>. O script <code>lucide.createIcons()</code> irá substituir automaticamente pelo SVG.
+        </div>
+      </div>
+
+      <div class="card mb-4 border-0 shadow-sm bg-body-tertiary">
+        <div class="card-body">
+          <div class="input-group input-group-lg">
+            <span class="input-group-text bg-white border-end-0"><i data-lucide="search"></i></span>
+            <input type="text" id="busca-icones" class="form-control border-start-0" placeholder="Buscar ícones por nome..." autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3" id="lista-icones">
+        ${iconCards}
+      </div>
+    </section>
+  `;
+}
+
+function inicializarBuscaIcones() {
+  const input = document.getElementById('busca-icones');
+  if (!input) return;
+
+  input.addEventListener('input', (e) => {
+    const termo = e.target.value.toLowerCase();
+    const icones = document.querySelectorAll('.icon-item');
+    let visiveis = 0;
+
+    icones.forEach(icone => {
+      const nome = icone.dataset.name;
+      if (nome.includes(termo)) {
+        icone.classList.remove('d-none');
+        visiveis++;
+      } else {
+        icone.classList.add('d-none');
+      }
+    });
+  });
+}
+
+// Função global para copiar nome
+window.copiarNomeIcone = function(nome) {
+  navigator.clipboard.writeText(nome).then(() => {
+    // Feedback visual simples (toast seria melhor, mas alert serve por enquanto)
+    // Vamos usar um toast se existir a função, senão console
+    console.log('Copiado: ' + nome);
+  });
 }
 
 function paginaLegalOps() {

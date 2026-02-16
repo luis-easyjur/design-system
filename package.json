@@ -7,15 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "compile": "sass --load-path=node_modules --style compressed --source-map src/scss/design-system.scss:dist/css/design-system.min.css src/scss/saas.scss:dist/css/saas.min.css src/scss/legal-ops.scss:dist/css/legal-ops.min.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
-    "compile:dev": "sass --load-path=node_modules src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
-    "watch": "sass --load-path=node_modules --watch src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css"
+    "compile": "sass --load-path=node_modules --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=if-function --style compressed --source-map src/scss/design-system.scss:dist/css/design-system.min.css src/scss/saas.scss:dist/css/saas.min.css src/scss/legal-ops.scss:dist/css/legal-ops.min.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "compile:dev": "sass --load-path=node_modules --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=if-function src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css && vite build && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "watch": "sass --load-path=node_modules --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=if-function --watch src/scss/design-system.scss:dist/css/design-system.css src/scss/saas.scss:dist/css/saas.css src/scss/legal-ops.scss:dist/css/legal-ops.css"
   },
   "devDependencies": {
     "sass": "^1.97.1",
     "vite": "^7.2.4"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "lucide": "^0.564.0"
   }
 }

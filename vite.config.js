@@ -1,6 +1,19 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 
+const loggerSilenciarDeprecacoesSass = {
+  warn(message, opts) {
+    if (opts?.deprecation || (typeof message === 'string' && message.includes('repetitive') && message.includes('omitted'))) return;
+    const { stderr } = process;
+    if (typeof stderr?.write === 'function') stderr.write(`WARNING: ${message}\n`);
+  },
+  debug(message, opts) {
+    if (opts?.deprecation) return;
+    const { stderr } = process;
+    if (typeof stderr?.write === 'function') stderr.write(`DEBUG: ${message}\n`);
+  }
+};
+
 export default defineConfig({
   build: {
     lib: {
@@ -25,5 +38,15 @@ export default defineConfig({
     outDir: 'dist/js',
     emptyOutDir: false, // Não limpar para não apagar o CSS gerado pelo Sass
     sourcemap: true
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        logger: loggerSilenciarDeprecacoesSass,
+      },
+      sass: {
+        logger: loggerSilenciarDeprecacoesSass,
+      },
+    },
   }
 });
