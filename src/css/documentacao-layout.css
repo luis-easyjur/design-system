@@ -66,3 +66,22 @@
   background-color: rgba(229, 41, 63, 0.1); /* Primary com transparência */
   color: var(--bs-primary) !important;
 }
+
+/* Formato tag para caixas de cor — ponta suave à esquerda, cantos arredondados à direita */
+.color-swatch-tag {
+  clip-path: polygon(0 50%, 14% 0, 100% 0, 100% 100%, 14% 100%);
+}
+
+/* Paleta principal e cards grandes */
+.color-swatch-tag-lg {
+  clip-path: polygon(0 50%, 10% 0, 100% 0, 100% 100%, 10% 100%);
+}
+
+/* Paleta expandida — swatches horizontais alongados */
+.color-swatch-tag-sm {
+  width: 72px;
+  min-width: 72px;
+  height: 32px;
+  flex-shrink: 0;
+  clip-path: polygon(0 50%, 18% 0, 100% 0, 100% 100%, 18% 100%);
+}
