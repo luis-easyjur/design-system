@@ -1,24 +1,114 @@
-/* LAYOUT DA DOCUMENTAÇÃO */
+/* LAYOUT DA DOCUMENTAÇÃO - MODERN GLASS STYLE */
 
-/* Ajustes de responsividade para a sidebar */
-@media (max-width: 991.98px) {
+body {
+  background-color: #F8F9FA !important;
+}
+
+/* Forçar fonte Borna nos exemplos de tipografia e em toda a documentação */
+body, h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: "Borna", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.topbar {
+  height: 64px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E9ECEF;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.sidebar {
+  width: 280px;
+  position: fixed;
+  top: 80px; /* 64px topbar + 16px gap */
+  bottom: 16px;
+  left: 16px;
+  z-index: 1020;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #E9ECEF;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.25rem 0.5rem;
+}
+
+main.content-wrapper {
+  margin-top: 64px;
+  margin-left: 312px; /* 280px sidebar + 16px gap + 16px margin */
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 1199.98px) {
   .sidebar {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow-y: visible !important;
-    border-right: none !important;
-    border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+    left: -300px;
   }
-  
-  main.flex-grow-1 {
-    margin-left: 0 !important;
+  main.content-wrapper {
+    margin-left: 0;
   }
+  .sidebar.show {
+    left: 16px;
+  }
+}
+
+/* Estilização da navegação na sidebar */
+.sidebar .nav-group-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #90A4AE;
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+.sidebar .nav-link {
+  color: #455A64 !important;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  margin: 0.125rem 0.75rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  border: none !important;
+}
+
+.sidebar .nav-link svg {
+  margin-right: 0.75rem;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #F8F9FA;
+  color: var(--bs-primary) !important;
+}
+
+.sidebar .nav-link:hover svg {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(229, 41, 63, 0.08) !important;
+  color: var(--bs-primary) !important;
+}
+
+.sidebar .nav-link.active svg {
+  opacity: 1;
+  color: var(--bs-primary);
 }
 
 /* Scrollbar customizada para a sidebar */
 .sidebar::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .sidebar::-webkit-scrollbar-track {
@@ -26,43 +116,170 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--bs-gray-300);
-  border-radius: 20px;
+  background-color: #E9ECEF;
+  border-radius: 10px;
 }
 
-/* Área de código */
-.card-footer pre {
-  margin: 0;
-  white-space: pre-wrap;
+/* Formato tag para caixas de cor — ponta suave à esquerda, cantos arredondados à direita */
+.color-swatch-tag {
+  clip-path: polygon(0 50%, 14% 0, 100% 0, 100% 100%, 14% 100%);
 }
 
-.nav-tabs .nav-link {
-  color: var(--bs-secondary);
+/* Paleta principal e cards grandes */
+.color-swatch-tag-lg {
+  clip-path: polygon(0 50%, 10% 0, 100% 0, 100% 100%, 10% 100%);
 }
 
-.nav-tabs .nav-link:hover {
-  color: var(--bs-primary);
-  border-color: transparent;
+/* Paleta expandida — swatches horizontais alongados */
+.color-swatch-tag-sm {
+  width: 72px;
+  min-width: 72px;
+  height: 32px;
+  flex-shrink: 0;
+  clip-path: polygon(0 50%, 18% 0, 100% 0, 100% 100%, 18% 100%);
 }
 
-.nav-tabs .nav-link.active {
-  color: var(--bs-primary);
-  font-weight: 600;
-}
+/* Utilitários extras para documentação */
+.ls-1 { letter-spacing: 0.1em; }
+.ls-2 { letter-spacing: 0.2em; }
+.extra-small { font-size: 0.75rem; }
+.font-monospace { font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
-/* Estilização específica para a documentação não conflitar com o conteúdo */
-.sidebar .nav-link {
-  border-radius: var(--bs-border-radius);
-  padding: 0.5rem 1rem;
+/* Estilos para o Calendário Duplo da Documentação (modelo avançado)
+   utilizando as cores padrões do design system */
+.calendar-day {
   transition: all 0.2s;
+  user-select: none;
+  width: 14.28%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
-.sidebar .nav-link:hover:not(.active) {
+/* versão compacta reduzida: menor fonte e espaçamento */
+.calendar-compact {
+  font-size: 0.8rem;
+}
+.calendar-compact .calendar-day {
+  /* a célula continua 1/7 mas com fonte menor */
+}
+.calendar-compact .calendar-grid {
+  gap: 0.1rem;
+}
+
+/* hover suave em qualquer dia não selecionado */
+.calendar-day:hover:not(.bg-primary):not(.calendar-day-in-range) {
   background-color: var(--bs-gray-100);
-  color: var(--bs-primary) !important;
+  border-radius: 50%;
 }
 
-.sidebar .nav-link.active {
-  background-color: rgba(229, 41, 63, 0.1); /* Primary com transparência */
-  color: var(--bs-primary) !important;
+/* dia isolado ou extremidades da seleção (quadrado arredondado) */
+.calendar-day.bg-primary {
+  background-color: transparent !important;
+  color: #fff !important;
+  z-index: 10 !important;
+  position: relative;
+}
+
+/* O quadrado vermelho de fato, como um pseudo-elemento para controle de camada */
+.calendar-day.bg-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bs-primary) !important;
+  border-radius: 8px;
+  z-index: -1;
+}
+
+/* Indicador de "hoje": bolinha vermelha no canto superior direito */
+.calendar-day-today::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--bs-primary);
+  border-radius: 50%;
+  z-index: 11;
+}
+
+/* Bolinha branca quando o dia de hoje está selecionado (para contraste) */
+.calendar-day.bg-primary.calendar-day-today::after {
+  background-color: #fff;
+  z-index: 12;
+}
+
+/* intervalo entre início e fim: cor #E7E8E9 */
+.calendar-day-in-range {
+  background-color: #E7E8E9 !important;
+  color: var(--bs-dark) !important;
+  border-radius: 0 !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pseudo-elementos para preencher o fundo da metade da célula nas extremidades */
+.calendar-day-range-start,
+.calendar-day-range-end {
+  position: relative;
+  z-index: 5;
+}
+
+/* O cinza deve vir por baixo do vermelho (-2 vs -1 do vermelho) */
+.calendar-day-range-start::before,
+.calendar-day-range-end::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #E7E8E9 !important;
+  z-index: -2;
+}
+
+/* Início da seleção: preenche a metade direita */
+.calendar-day-range-start::before {
+  right: 0;
+}
+
+/* Fim da seleção: preenche a metade esquerda */
+.calendar-day-range-end::before {
+  left: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Botões de navegação do calendário */
+.btn-calendar-nav {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px; /* Cantos arredondados */
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  color: #212529; /* Matches text-dark */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+  line-height: 1;
+}
+
+.btn-calendar-nav:hover {
+  background-color: #f8f9fa; /* Lighter gray for hover */
+  border-color: #dee2e6;
+  color: #212529;
+}
+
+.btn-calendar-nav i {
+  font-size: 0.8rem;
 }

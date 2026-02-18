@@ -5,11 +5,44 @@
 
 // Definições de Cores Principais
 $primary: #e5293f;
-$secondary: #acbac2;
+$secondary: #6B7280; // Alterado para cinza para manter apenas tons de vermelho, cinza e branco
 
 // Definição de Cores Customizadas (para serem adicionadas ao mapa do Bootstrap)
 $custom-colors: (
-  "tertiary": #7f919a
+  "red-500": #E5293F,
+  "red-400": #F31D3F,
+  "red-600": #C51935,
+  "red-200": #F2949F,
+  "red-100": #FCD9DE,
+  "blue-500": #2784B1,
+  "blue-400": #3B82F6,
+  "blue-600": #06B6D4,
+  "blue-200": #92CCE1,
+  "blue-100": #DAEAF2,
+  "green-500": #047857,
+  "green-400": #0CB56F,
+  "green-200": #85DAB7,
+  "orange-500": #F97316,
+  "orange-400": #FF8C00,
+  "orange-200": #FBBF24,
+  "purple-500": #8B5CF6,
+  "purple-400": #A78BFA,
+  "dark-red-500": #800000,
+  "dark-red-400": #B91C1C,
+  "pink-500": #FF385C,
+  "pink-400": #FE5675,
+  "gray-900": #212529,
+  "gray-800": #585B5E,
+  "gray-700": #606469,
+  "gray-600": #4B5563,
+  "gray-500": #6B7280,
+  "gray-400": #7A8188,
+  "gray-350": #909294,
+  "gray-300": #7F919A,
+  "gray-200": #9CA3AF,
+  "gray-150": #E7E8E9,
+  "gray-100": #F8F9FA,
+  "white": #FFFFFF
 );
 
 // Definições de Fontes
@@ -135,3 +168,26 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   --#{$prefix}btn-active-color: #fff;
   --#{$prefix}btn-disabled-color: #fff;
 }
+
+// Remover o box-shadow vermelho ao focar ou passar o mouse no checkbox
+.form-check-input:focus {
+  border-color: #dee2e6; // Cor padrão da borda
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+// Estilização específica da Sidebar (Documentação)
+.sidebar {
+  .nav-link {
+    font-size: 0.875rem; // Equivalente a 14px
+  }
+}
+
+// =============================================================================
+// Componente de Calendário (Range Picker)
+// =============================================================================
