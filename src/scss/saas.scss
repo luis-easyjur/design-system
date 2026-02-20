@@ -6,7 +6,7 @@
 
 @use "sass:meta";
 
-// 1. Carrega o nosso Design System (que já inclui o reset "Reboot" do Bootstrap)
+// 1. Blindagem: reverte estilos legados para padrões do navegador (especificidade mínima via *)
+@include meta.load-css("rebranding-blindagem");
+// 2. Design System: Bootstrap + customizações (vence a blindagem por especificidade ou ordem)
 @include meta.load-css("base");
-// 2. Força Borna no wrapper e herança nos descendentes (vence Lato do legado)
-@include meta.load-css("rebranding-font");

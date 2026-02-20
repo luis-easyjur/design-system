@@ -32,7 +32,7 @@ function splitSelectors(selector) {
 
 function escoparSelector(selector) {
   return splitSelectors(selector)
-    .map((parte) => (parte === ':root' ? WRAPPER : `${WRAPPER} ${parte}`))
+    .map((parte) => (parte === ':root' || parte === 'body' ? WRAPPER : `${WRAPPER} ${parte}`))
     .join(', ');
 }
 

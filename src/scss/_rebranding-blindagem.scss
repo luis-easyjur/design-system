@@ -1,0 +1,15 @@
+// =============================================================================
+// Blindagem: neutraliza TODO estilo legado dentro de #app .rebranding.
+//
+// `all: revert` desfaz qualquer declaração author-level e restaura os padrões
+// do navegador (UA stylesheet). Propriedades herdadas (color, font-family…)
+// voltam a herdar do wrapper, que recebe os valores corretos via body → wrapper
+// no PostCSS. O seletor * tem especificidade mínima, então qualquer regra do
+// Bootstrap (classe ou elemento) vence naturalmente.
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  all: revert;
+}
