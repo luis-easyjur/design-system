@@ -1,0 +1,47 @@
+// =============================================================================
+// "Root" isolado para #app .rebranding – todas as variáveis que o Bootstrap
+// usa em :root, definidas aqui em px/valores fixos. O legado pode bagunçar
+// :root à vontade; nosso DS só usa as variáveis deste escopo.
+// =============================================================================
+
+// Base tipográfica (16px = 1rem do DS)
+$rebrand-base-px: 16px;
+$rebrand-font-sans: "Borna", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+// Bordas (em px para não depender de rem)
+$rebrand-radius: 6px;
+$rebrand-radius-sm: 4px;
+$rebrand-radius-lg: 8px;
+$rebrand-radius-xl: 10px;
+$rebrand-radius-xxl: 16px;
+$rebrand-radius-pill: 50rem;
+$rebrand-border-width: 1px;
+
+// Botões / inputs (px)
+$rebrand-btn-padding-x: 12px;
+$rebrand-btn-padding-y: 6px;
+$rebrand-btn-padding-x-sm: 8px;
+$rebrand-btn-padding-y-sm: 4px;
+$rebrand-btn-padding-x-lg: 16px;
+$rebrand-btn-padding-y-lg: 8px;
+$rebrand-btn-font-size-sm: 14px;
+$rebrand-btn-font-size-lg: 20px;
+
+// Cores do DS (igual _base.scss)
+$rebrand-primary: #e5293f;
+$rebrand-secondary: #acbac2;
+$rebrand-tertiary: #7f919a;
+$rebrand-body-color: #212529;
+$rebrand-body-bg: #fff;
+$rebrand-border-color: #dee2e6;
+$rebrand-white: #fff;
+$rebrand-black: #000;
+
+// RGB para rgba() / focus (valores numéricos)
+$rebrand-primary-rgb: 229, 41, 63;
+$rebrand-secondary-rgb: 172, 186, 194;
+$rebrand-tertiary-rgb: 127, 145, 154;
+$rebrand-body-color-rgb: 33, 37, 41;
+$rebrand-body-bg-rgb: 255, 255, 255;
+$rebrand-black-rgb: 0, 0, 0;
+$rebrand-white-rgb: 255, 255, 255;

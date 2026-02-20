@@ -1,10 +1,12 @@
 // =============================================================================
-// SaaS - Bundle para o produto SaaS
-// Base compilada já dentro do contexto rebranding
+// SaaS - Bundle para o produto SaaS (convivência com legado)
+// Mesmo Bootstrap + base dos outros bundles. O escopo #app .rebranding
+// e a substituição de :root são aplicados via PostCSS (scripts/postcss-saas.js).
 // =============================================================================
 
 @use "sass:meta";
 
-#app .rebranding { 
-  @include meta.load-css("base");
-}
+// 1. Carrega o nosso Design System (que já inclui o reset "Reboot" do Bootstrap)
+@include meta.load-css("base");
+// 2. Força Borna no wrapper e herança nos descendentes (vence Lato do legado)
+@include meta.load-css("rebranding-font");

@@ -1,0 +1,25 @@
+// =============================================================================
+// Rebranding Reset - Neutraliza estilos legados dentro de #app .rebranding
+// Carregado via load-css dentro de #app .rebranding no saas.scss.
+//
+// Estratégia: all: initial SEM !important. Já ganha do legado pela
+// especificidade (#app .rebranding *). O base é compilado com !important
+// (via PostCSS) e fica depois deste reset, então o DS ganha do reset.
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  all: initial;
+}
+
+// Reestabelece herança e box-sizing para o DS aplicar em seguida
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

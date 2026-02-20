@@ -1,0 +1,12 @@
+// =============================================================================
+// Fonte Borna dentro de #app .rebranding – neutraliza Lato do legado.
+// :root vira #app .rebranding no PostCSS; * vira #app .rebranding *.
+// =============================================================================
+
+:root {
+  font-family: var(--bs-font-sans-serif);
+}
+
+* {
+  font-family: inherit;
+}
