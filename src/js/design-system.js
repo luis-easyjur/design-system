@@ -36,13 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
   createIconsWrapper();
 });
 
-// 2. Importar Patches
+// 2. Importar Flatpickr (date picker) e expor globalmente
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+window.flatpickr = flatpickr;
+
+// 3. Importar Patches
 import { initRebrandPatch, initLegacyModalConflict } from './utils/bootstrap-patch';
 
-// 3. Inicializar Patches
-// Executa imediatamente para garantir que o ambiente esteja pronto
+// 4. Inicializar Patches
 initRebrandPatch();
 initLegacyModalConflict();
 
-// 4. Exportar (opcional, para uso modular se necessário no futuro)
+// 5. Exportar (opcional, para uso modular se necessário no futuro)
 export default bootstrap;

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import path from 'path';
+import fs from 'fs';
 
 const loggerSilenciarDeprecacoesSass = {
   warn(message, opts) {
@@ -15,6 +16,27 @@ const loggerSilenciarDeprecacoesSass = {
 };
 
 export default defineConfig({
+  server: {
+    // Servir dist/ em /dist para a documentação usar design-system.css e design-system.js compilados
+    fs: { allow: ['.', path.join(__dirname, 'dist')] }
+  },
+  plugins: [
+    {
+      name: 'serve-dist',
+      configureServer(server) {
+        server.middlewares.use('/dist', (req, res, next) => {
+          const subPath = req.url.replace(/^\//, '') || 'index.html';
+          const file = path.join(__dirname, 'dist', subPath);
+          if (fs.existsSync(file) && fs.statSync(file).isFile()) {
+            const ext = path.extname(file);
+            const types = { '.js': 'application/javascript', '.css': 'text/css', '.map': 'application/json' };
+            res.setHeader('Content-Type', types[ext] || 'application/octet-stream');
+            fs.createReadStream(file).pipe(res);
+          } else next();
+        });
+      }
+    }
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/js/design-system.js'),

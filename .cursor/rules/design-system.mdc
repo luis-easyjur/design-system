@@ -17,7 +17,7 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 - **Compilação**: O `_base.scss` é compilado junto com o Bootstrap. A compilação gera 3 arquivos: `design-system.css`, `saas.css`, `legal-ops.css`. Mudanças no `_base.scss` refletem globalmente em todos os bundles.
 - **Documentação**: Após implementar, você deve atualizar a documentação para deixar o resultado visível e utilizável.
 
-## Regras de Implementação
+## Regras de Implementação CSS/Sass
 
 1.  **Bootstrap-first**: Tente resolver via variáveis, tokens ou utilitários do Bootstrap antes de criar CSS "solto".
 2.  **Global vs Específico**:
@@ -29,6 +29,12 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
     - Mantenha nomes previsíveis.
     - Evite `!important` a todo custo.
 5.  **Compatibilidade**: Não quebre estilos existentes sem plano de migração.
+
+## Regras de Implementação JavaScript
+
+1.  **Ponto de Entrada Único**: Todo o JavaScript construído, bem como patches e inicializações, **deve** ser importado para o arquivo central `@src/js/design-system.js`.
+2.  **Unificação de Dependências**: Devemos unificar todas as bibliotecas e scripts necessários para o Design System no bundle principal. O objetivo é que os projetos que vão utilizar o Design System como dependência não precisem se preocupar em instalar bibliotecas adicionais (via npm) ou importar scripts via CDN. Tudo deve vir empacotado e pronto para uso.
+3.  **Referência**: Utilize a pasta `@src/js` e o arquivo `@src/js/design-system.js` como exemplo de como importar dependências globais, inicializar funções e expor bibliotecas ao contexto das aplicações que as consumirão.
 
 ## Fluxo de Trabalho
 
@@ -53,15 +59,16 @@ Você é responsável por **desenvolver a solicitação no nosso Design System**
 
 ## Definição de Pronto (DoD)
 
-- [ ] Mudança implementada no `@src/scss/_base.scss`.
-- [ ] Novas classes/variáveis disponíveis após compilação.
-- [ ] Sem regressões visuais.
+- [ ] Mudança de estilo implementada no `@src/scss/_base.scss` (se aplicável).
+- [ ] Mudança de JavaScript centralizada no `@src/js/design-system.js` (se aplicável).
+- [ ] Novas classes/variáveis/scripts disponíveis após compilação.
+- [ ] Sem regressões visuais ou de comportamento.
 - [ ] Documentação atualizada com exemplos.
 
 ## Modelo de Commit/Entrega
 
 Ao finalizar uma tarefa de evolução do DS, forneça:
 - **Resumo**: O que mudou e por quê.
-- **Estratégia**: Variáveis ajustadas vs Classes criadas.
-- **Arquivos**: `@src/scss/_base.scss`.
+- **Estratégia**: Variáveis ajustadas vs Classes criadas (ou scripts adicionados/atualizados).
+- **Arquivos**: `@src/scss/_base.scss` ou `@src/js/design-system.js`.
 - **Exemplo de Uso**: Snippet HTML demonstrando a nova feature.

@@ -5,11 +5,44 @@
 
 // Definições de Cores Principais
 $primary: #e5293f;
-$secondary: #acbac2;
+$secondary: #6B7280;
 
 // Definição de Cores Customizadas (para serem adicionadas ao mapa do Bootstrap)
 $custom-colors: (
-  "tertiary": #7f919a
+  "red-500": #E5293F,
+  "red-400": #F31D3F,
+  "red-600": #C51935,
+  "red-200": #F2949F,
+  "red-100": #FCD9DE,
+  "blue-500": #2784B1,
+  "blue-400": #3B82F6,
+  "blue-600": #06B6D4,
+  "blue-200": #92CCE1,
+  "blue-100": #DAEAF2,
+  "green-500": #047857,
+  "green-400": #0CB56F,
+  "green-200": #85DAB7,
+  "orange-500": #F97316,
+  "orange-400": #FF8C00,
+  "orange-200": #FBBF24,
+  "purple-500": #8B5CF6,
+  "purple-400": #A78BFA,
+  "dark-red-500": #800000,
+  "dark-red-400": #B91C1C,
+  "pink-500": #FF385C,
+  "pink-400": #FE5675,
+  "gray-900": #212529,
+  "gray-800": #585B5E,
+  "gray-700": #606469,
+  "gray-600": #4B5563,
+  "gray-500": #6B7280,
+  "gray-400": #7A8188,
+  "gray-350": #909294,
+  "gray-300": #7F919A,
+  "gray-200": #9CA3AF,
+  "gray-150": #E7E8E9,
+  "gray-100": #F8F9FA,
+  "white": #FFFFFF
 );
 
 // Definições de Fontes
@@ -82,6 +115,15 @@ $font-family-sans-serif: "Borna", system-ui, -apple-system, "Segoe UI", Roboto, 
 
 // Importar funções e variáveis do Bootstrap para poder sobrescrever/estender
 @import "bootstrap/scss/functions";
+
+// Overrides de Variáveis do Bootstrap (Devem vir ANTES do import de variables)
+$input-focus-box-shadow: none;
+$form-select-focus-box-shadow: none;
+$form-check-input-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$input-focus-border-color: #6B7280;
+$form-select-focus-border-color: #6B7280;
+
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/variables-dark";
 
@@ -136,6 +178,18 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   --#{$prefix}btn-disabled-color: #fff;
 }
 
+// Checkbox: remover glow vermelho no foco
+.form-check-input:focus {
+  border-color: $border-color;
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+}
+
 // Termos Monitorados — cards com hover
 .termos-monitorados__card {
   transition: box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
@@ -145,4 +199,382 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
     border-color: var(--#{$prefix}primary);
   }
+}
+
+// =============================================================================
+// PADRONIZAÇÃO GLOBAL DE INPUTS
+// =============================================================================
+
+.form-control,
+.form-select {
+  padding: 0.625rem 0.9375rem;
+  min-height: 2.625rem;
+  font-size: 0.875rem;
+}
+
+.form-control-sm,
+.form-select-sm {
+  min-height: 2rem;
+  padding: 0.25rem 0.625rem;
+}
+
+.form-control-lg,
+.form-select-lg {
+  min-height: 3.25rem;
+  padding: 0.875rem 1.25rem;
+}
+
+// =============================================================================
+// Componente Multiselect (Dropdown Customizado)
+// =============================================================================
+
+.dropdown-multiselect {
+  font-family: $font-family-sans-serif;
+  font-size: 0.875rem;
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+  max-width: 300px;
+  height: 2.625rem;
+  max-height: 2.625rem;
+  overflow: visible;
+
+  .btn,
+  .dropdown-toggle,
+  .dropdown-menu,
+  .dropdown-item,
+  span,
+  .action-clear {
+    font-family: $font-family-sans-serif;
+  }
+
+  .action-clear {
+    color: $gray-500;
+    font-weight: 400;
+    font-size: 0.875rem;
+    padding: 0.4rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+    transition: color 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent;
+      color: $primary;
+    }
+
+    i,
+    svg {
+      color: inherit;
+    }
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 2.625rem;
+    min-height: 2.625rem;
+    max-height: 2.625rem;
+    line-height: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+    gap: 0.5rem;
+    background-color: $white;
+    border: 1px solid $border-color;
+    color: $body-color;
+    padding: 0 0.9375rem;
+    border-radius: $border-radius;
+    transition: all 0.2s;
+    margin: 0;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover,
+    &:focus,
+    &.show {
+      background-color: $gray-100;
+      border-color: $border-color;
+      color: $body-color;
+      box-shadow: none;
+    }
+
+    .badge-custom {
+      background-color: #E7E8E9;
+      color: $body-color;
+      font-weight: 500;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .selected-badges {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      gap: 0.25rem;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .badge {
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.35em 0.65em;
+      max-width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-flex;
+      align-items: center;
+
+      &.badge-counter {
+        background-color: $gray-100;
+        color: $body-color;
+        border: 1px solid $border-color;
+        max-width: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 0.5rem;
+    box-shadow: $box-shadow;
+    border: 1px solid $border-color;
+    padding: 0.5rem 0;
+    margin-top: 0.25rem;
+    width: 100%;
+    min-width: auto;
+
+    .dropdown-header {
+      padding: 0.5rem 1rem;
+      color: $gray-600;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .dropdown-item {
+    padding: 0.35rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: $body-color;
+    font-weight: 400;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.15s ease-in-out;
+    overflow: hidden;
+
+    .check-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      min-width: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 0;
+      margin-right: 0;
+      flex-shrink: 0;
+
+      svg {
+        display: none;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 12px;
+        border: solid transparent;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        margin-top: -2px;
+        opacity: 0;
+        transition: all 0.1s ease;
+      }
+    }
+
+    .item-text {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+    }
+
+    &:hover {
+      background-color: $gray-100;
+      color: $body-color;
+    }
+
+    &:active,
+    &.active {
+      background-color: $gray-100;
+      color: $body-color;
+    }
+
+    &.selected {
+      font-weight: 500;
+      background-color: transparent;
+
+      .check-icon::after {
+        border-color: $primary;
+        border-width: 0 2px 2px 0;
+        opacity: 1;
+      }
+
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// Componente Calendário (Range Picker)
+// =============================================================================
+
+.calendar-day {
+  transition: all 0.2s;
+  user-select: none;
+  width: 14.28%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  &:hover:not(.calendar-day--selected):not(.calendar-day-in-range) {
+    background-color: var(--#{$prefix}gray-100);
+    border-radius: 50%;
+  }
+}
+
+.calendar-compact {
+  font-size: 0.8rem;
+
+  .calendar-grid {
+    gap: 0.1rem;
+  }
+}
+
+// Dia selecionado (extremidades do range)
+.calendar-day--selected {
+  background-color: transparent;
+  color: #fff;
+  z-index: 10;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--#{$prefix}primary);
+    border-radius: 0.5rem;
+    z-index: -1;
+  }
+}
+
+// Indicador de "hoje"
+.calendar-day-today {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--#{$prefix}primary);
+    border-radius: 50%;
+    z-index: 11;
+  }
+}
+
+// Quando "hoje" está selecionado, bolinha branca para contraste
+.calendar-day--selected.calendar-day-today::after {
+  background-color: #fff;
+  z-index: 12;
+}
+
+// Intervalo entre início e fim
+.calendar-day-in-range {
+  background-color: #E7E8E9;
+  color: var(--#{$prefix}dark);
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.calendar-day-range-start,
+.calendar-day-range-end {
+  position: relative;
+  z-index: 5;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: #E7E8E9;
+    z-index: -2;
+  }
+}
+
+.calendar-day-range-start::before {
+  right: 0;
+}
+
+.calendar-day-range-end::before {
+  left: 0;
+}
+
+// Botões de navegação do calendário
+.btn-calendar-nav {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-color;
+  background-color: $white;
+  color: $body-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+  line-height: 1;
+
+  &:hover {
+    background-color: $gray-100;
+    border-color: $border-color;
+    color: $body-color;
+  }
+
+  i {
+    font-size: 0.8rem;
+  }
+}
+
+// =============================================================================
+// Utilitários
+// =============================================================================
+
+.cursor-pointer {
+  cursor: pointer;
 }
